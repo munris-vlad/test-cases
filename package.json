@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@archwayhq/arch3.js": "^0.4.0",
+    "@keplr-wallet/provider": "^0.12.16",
+    "axios": "^1.4.0"
+  },
+  "type": "module"
+}

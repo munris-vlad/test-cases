@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <script type="text/javascript">
+    window.onload = async () => {
+      console.log(window);
+      try {
+        if (!window.keplr) {
+            alert("Please install keplr extension");
+        } else {
+            const chainId = "constantine-3";
+
+            await window.keplr.enable(chainId);
+        
+            const clientRead = await SigningArchwayClient.connectWithSigner(network.endpoint); // используем для получения данных
+
+            const signer = window.keplr.getOfflineSigner(chainId);
+            const client = await SigningArchwayClient.connectWithSigner(network.endpoint, signer); // используем для отправки запросов от юзера этот клиент
+
+            const accounts = await signer.getAccounts(); // получить адрес кошелька по accounts[0].address
+
+            // дальше можем использовать для записи
+            // client.execute
+            // для чтения
+            // clientRead.queryContractSmart
+        }
+      } catch (error) {
+        console.error('Ошибка подключения к Keplr:', error);
+      }
+    }
+  </script>
+</body>
+</html>
