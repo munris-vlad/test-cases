@@ -15,7 +15,6 @@ const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wa
 
 const contractAddress = 'archway1sjhht23xf9m9f8vu9cvhujad3n6c7nhgl83w3aqt8szmnh4ghueq5jkj9d';
 
-
 const data = {
   collection_name: 'test',
   token_symbol: 'TS',
@@ -38,23 +37,17 @@ const data = {
   }
 };
 
+console.log(JSON.stringify(data.metadata));
 
 const createCollectionMsgNew = {
   "add_collection": {
     "msg": {
       "create": {
         "init": {
-          "name": "ArchwayFriends",
-          "symbol": "FREND",
-          "minter": "archway1lx4u2ymzrs6udw0xc35kwnvfxpf6nm52yl7v6a",
-          "metadata": {
-            "banner": "test",
-            "profile_image": "test",
-            "description": "TestCollection",
-            "categories": ["Art"],
-            "website": "link",
-            "explicit_content": true
-          }
+          "name": data.collection_name,
+          "symbol": data.token_symbol,
+          "minter": accounts[0].address,
+          "metadata": JSON.stringify(data.metadata)
         },
         "label": "Test"
       }
