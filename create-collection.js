@@ -1,6 +1,7 @@
 import { ArchwayClient } from '@archwayhq/arch3.js';
 import { SigningArchwayClient } from '@archwayhq/arch3.js';
 import { DirectSecp256k1HdWallet } from '@cosmjs/proto-signing';
+import { GasPrice, calculateFee } from "@cosmjs/stargate";
 
 const network = {
   chainId: 'constantine-3',
@@ -13,10 +14,10 @@ const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic, { prefix: ne
 const accounts = await wallet.getAccounts();
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wallet);
 
-const contractAddress = 'archway1sjhht23xf9m9f8vu9cvhujad3n6c7nhgl83w3aqt8szmnh4ghueq5jkj9d';
+const contractAddress = 'archway1x8dugk6pw27j5q6kkv837fgp9ycvu9y7tm99th8x0gmkgu8x346sa55ygj';
 
 const data = {
-  collection_name: 'test',
+  collection_name: 'test2',
   token_symbol: 'TS',
   metadata: {
     social_links: {
@@ -49,17 +50,26 @@ const createCollectionMsgNew = {
           "minter": accounts[0].address,
           "metadata": JSON.stringify(data.metadata)
         },
-        "label": "Test"
+        "label": "Test_"+data.collection_name
       }
     }
   }
 };
 
+let send_amount = {
+    amount: "1",
+    denom: "aconst"
+};
+
+const gasPrice = GasPrice.fromString("1000000000000aconst");
+
 const { transactionHash } = await client.execute(
   accounts[0].address,
   contractAddress,
   createCollectionMsgNew,
-  "auto"
+  calculateFee(500000, gasPrice),
+  "test",
+  [send_amount]
 );
 
 console.log(transactionHash);
