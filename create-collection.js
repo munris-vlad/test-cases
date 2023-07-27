@@ -13,10 +13,8 @@ const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic, { prefix: ne
 const accounts = await wallet.getAccounts();
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wallet);
 
-const hubContractAddress = 'archway1hwflc4hy67gtn9e2n83qvp3krjwavjpcammajatgseq5xf6q4wwqnyq4md';
+const contractAddress = 'archway1sjhht23xf9m9f8vu9cvhujad3n6c7nhgl83w3aqt8szmnh4ghueq5jkj9d';
 
-// Создание коллекции
-// minter - обладатель контракта. Только он сможет создавать нфт в этой коллекции
 
 const data = {
   collection_name: 'test',
@@ -42,40 +40,32 @@ const data = {
 
 
 const createCollectionMsgNew = {
-  create_collection: {
-    "init": {
-      "name": data.collection_name,
-      "symbol": data.token_symbol,
-      "minter": accounts[0].address,
-      "metadata": JSON.stringify(data.metadata),
-    },
-    "label": "Test"
-  },
-};
-
-const createCollectionMsgOld = {
-  create_collection: {
-    "init": {
-      "name": "TestCollection",
-      "symbol": "TC",
-      "minter": accounts[0].address,
-      "metadata": {
-        "banner": "test",
-        "profile_image": "test",
-        "description": "TestCollection",
-        "categories": ["Art"],
-        "website": "link",
-        "explicit_content": true
-      },
-    },
-    "label": "Test"
-  },
+  "add_collection": {
+    "msg": {
+      "create": {
+        "init": {
+          "name": "ArchwayFriends",
+          "symbol": "FREND",
+          "minter": "archway1lx4u2ymzrs6udw0xc35kwnvfxpf6nm52yl7v6a",
+          "metadata": {
+            "banner": "test",
+            "profile_image": "test",
+            "description": "TestCollection",
+            "categories": ["Art"],
+            "website": "link",
+            "explicit_content": true
+          }
+        },
+        "label": "Test"
+      }
+    }
+  }
 };
 
 const { transactionHash } = await client.execute(
   accounts[0].address,
-  hubContractAddress,
-  createCollectionMsgOld,
+  contractAddress,
+  createCollectionMsgNew,
   "auto"
 );
 
