@@ -24,22 +24,21 @@ let metadata = {
   }
 }
 
+let tokens = [];
+
+for (let i = 1102; i < 1202; i++) {
+  tokens.push({
+    "token_id": i.toString(),,
+    "owner": accounts[0].address,
+    "token_uri": "https://ik.imagekit.io/fmivn9lzw/1_C_FB4vklOD.png",
+    "extension": JSON.stringify(metadata)
+  });
+}
+
 const mintNftMsg = {
   "batch_mint": {
-    "tokens": [
-      {
-        "token_id": "1",
-        "owner": accounts[0].address,
-        "token_uri": "https://ik.imagekit.io/fmivn9lzw/1_C_FB4vklOD.png",
-        "extension": JSON.stringify(metadata)
-      }
-    ]
+    "tokens": tokens
   }
-};
-
-let send_amount = {
-    amount: "1",
-    denom: "aconst"
 };
 
 const gasPrice = GasPrice.fromString("1000000000000aconst");
