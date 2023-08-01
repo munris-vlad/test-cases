@@ -17,7 +17,7 @@ const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wa
 const contractAddress = 'archway1x8dugk6pw27j5q6kkv837fgp9ycvu9y7tm99th8x0gmkgu8x346sa55ygj';
 
 const data = {
-  collection_name: 'test2',
+  collection_name: 'test4',
   token_symbol: 'TS',
   metadata: {
     social_links: {

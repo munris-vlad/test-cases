@@ -8,7 +8,7 @@ const network = {
   prefix: 'archway',
 };
 
-const hubContractAddress = 'archway1hwflc4hy67gtn9e2n83qvp3krjwavjpcammajatgseq5xf6q4wwqnyq4md';
+const hubContractAddress = 'archway1x8dugk6pw27j5q6kkv837fgp9ycvu9y7tm99th8x0gmkgu8x346sa55ygj';
 
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint);
 
@@ -17,7 +17,7 @@ const collectionsMsg = {
     "pagination": {
       "limit": 10,
       "order": "ascending",
-      "page": "1"
+      "page": "4"
     }
   },
 };
