@@ -14,30 +14,15 @@ const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic, { prefix: ne
 const accounts = await wallet.getAccounts();
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wallet);
 
-const contractAddress = 'archway1p60gpene0yu5dz7gl8npaesdr7c0hwt6rlh6yuvnq5ygynp3cffsq4crft'; // collection address
+const marketContractAddress = 'archway1cwx58k4xew5zrc4zqs888w58fhckvn09ryh02qx03dv83g8d6fyq6kcl3s';
 
-
-let metadata = {
-  'link': '123',
-  'some_attributes': {
-    'attribute': 'value'
-  }
-}
-
-let tokens = [];
-
-for (let i = 1102; i < 1202; i++) {
-  tokens.push({
-    "token_id": i.toString(),
-    "owner": accounts[0].address,
-    "token_uri": "https://ik.imagekit.io/fmivn9lzw/1_C_FB4vklOD.png",
-    "extension": JSON.stringify(metadata)
-  });
-}
-
-const mintNftMsg = {
-  "batch_mint": {
-    "tokens": tokens
+const msg = {
+  "add_payment_types": {
+    "tokens": [
+      {
+        "native": {"denom": "const"}
+      }
+    ]
   }
 };
 
@@ -45,10 +30,9 @@ const gasPrice = GasPrice.fromString("1000000000000aconst");
 
 const { transactionHash } = await client.execute(
   accounts[0].address,
-  contractAddress,
-  mintNftMsg,
-  calculateFee(500000, gasPrice),
-  ""
+  marketContractAddress,
+  msg,
+  calculateFee(500000, gasPrice)
 );
 
 console.log(transactionHash);
