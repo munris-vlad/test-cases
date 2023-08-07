@@ -17,23 +17,21 @@ const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wa
 const marketContractAddress = 'archway1cwx58k4xew5zrc4zqs888w58fhckvn09ryh02qx03dv83g8d6fyq6kcl3s';
 const contractAddress = 'archway1xlu0usjnk99kczu9f7kahdj05j4aq9q6glevvm8uwm8e3nr6z99snxqlh8'; // collection address
 
-const auctionNftMsg = `{"auction":{"token":{"native":{"denom":"aconst"}},"amount":"100","duration":220}}`;
-
-console.log(auctionNftMsg);
+let bid_amount = {
+    amount: "101",
+    denom: "aconst"
+};
 
 const gasPrice = GasPrice.fromString("1000000000000aconst");
-const token_id = 4;
 const { transactionHash } = await client.execute(
   accounts[0].address,
-  contractAddress,
-  { 
-    send_nft: {
-      contract: marketContractAddress,
-      token_id: token_id.toString(),
-      msg: Buffer.from(auctionNftMsg).toString("base64")
-    } 
+  marketContractAddress,
+  {
+    "cancel": { // finalize_auction только когда аукцион закончился по времени
+        "key": "1691439498000"
+    }
   },
-  calculateFee(500000, gasPrice),
+  calculateFee(1000000, gasPrice),
   ""
 );
 
