@@ -9,7 +9,8 @@ const network = {
   prefix: 'archway',
 };
 
-const mnemonic = 'core wear goose congress elephant afraid amazing diet holiday crush better expect provide envelope involve slide hotel prepare dad zoo fatal media cute already';
+// const mnemonic = 'core wear goose congress elephant afraid amazing diet holiday crush better expect provide envelope involve slide hotel prepare dad zoo fatal media cute already';
+const mnemonic = 'path index calm physical toy when sell annual pill elite creek pave';
 const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic, { prefix: network.prefix });
 const accounts = await wallet.getAccounts();
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wallet);
@@ -18,7 +19,7 @@ const marketContractAddress = 'archway1cwx58k4xew5zrc4zqs888w58fhckvn09ryh02qx03
 const contractAddress = 'archway1xlu0usjnk99kczu9f7kahdj05j4aq9q6glevvm8uwm8e3nr6z99snxqlh8'; // collection address
 
 let bid_amount = {
-    amount: "101",
+    amount: "122",
     denom: "aconst"
 };
 
@@ -30,7 +31,7 @@ const { transactionHash } = await client.execute(
     "send_tokens": {
         "msg": {
             "bid": {
-                "key": "1691440598000"
+                "key": "1692120583000"
             }
         }
     }

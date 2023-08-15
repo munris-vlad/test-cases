@@ -27,8 +27,8 @@ const { transactionHash } = await client.execute(
   accounts[0].address,
   marketContractAddress,
   {
-    "cancel": { // finalize_auction только когда аукцион закончился по времени
-        "key": "1691439498000"
+    "finalize_auction": {
+        "key": "1691440598000"
     }
   },
   calculateFee(1000000, gasPrice),

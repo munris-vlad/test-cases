@@ -31,7 +31,7 @@ const { transactionHash } = await client.execute(
         "msg": {
             "offer": {
                 "collection": contractAddress,
-                "token": "6"
+                "token": "7"
             }
         }
     }

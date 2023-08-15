@@ -22,7 +22,7 @@ const listNftMsg = `{"sell":{"token":{"native":{"denom":"aconst"}},"amount":"100
 console.log(listNftMsg);
 
 const gasPrice = GasPrice.fromString("1000000000000aconst");
-const token_id = 6;
+const token_id = 8;
 const { transactionHash } = await client.execute(
   accounts[0].address,
   contractAddress,
