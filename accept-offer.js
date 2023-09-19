@@ -15,14 +15,14 @@ const accounts = await wallet.getAccounts();
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wallet);
 
 const marketContractAddress = 'archway1cwx58k4xew5zrc4zqs888w58fhckvn09ryh02qx03dv83g8d6fyq6kcl3s';
-const contractAddress = 'archway1xlu0usjnk99kczu9f7kahdj05j4aq9q6glevvm8uwm8e3nr6z99snxqlh8'; // collection address
+const contractAddress = 'archway15y2rtn48nm0483umghatyj48n8fs6lrwj7t5q2lpl7apzdtmx37qg6j8wc'; // collection address
 
 let bid_amount = {
     amount: "101",
     denom: "aconst"
 };
 
-let acceptOffer = `{"accept_offer": {"key": "1692119411000"}}`;
+let acceptOffer = `{"accept_offer": {"key": "1695143069000"}}`;
 
 const gasPrice = GasPrice.fromString("1000000000000aconst");
 const { transactionHash } = await client.execute(
@@ -31,7 +31,7 @@ const { transactionHash } = await client.execute(
   {
     send_nft: {
         "contract": marketContractAddress,
-        "token_id": "7",
+        "token_id": "1",
         "msg": Buffer.from(acceptOffer).toString("base64")
     }
   },

@@ -14,7 +14,7 @@ const wallet = await DirectSecp256k1HdWallet.fromMnemonic(mnemonic, { prefix: ne
 const accounts = await wallet.getAccounts();
 const client = await SigningArchwayClient.connectWithSigner(network.endpoint, wallet);
 
-const contractAddress = 'archway1xlu0usjnk99kczu9f7kahdj05j4aq9q6glevvm8uwm8e3nr6z99snxqlh8'; // collection address
+const contractAddress = 'archway15y2rtn48nm0483umghatyj48n8fs6lrwj7t5q2lpl7apzdtmx37qg6j8wc'; // collection address
 
 
 let metadata = {
